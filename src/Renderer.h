@@ -4,14 +4,15 @@ const int CHIP_8_COLS = 64;
 class Renderer
 {
 private:
-    int width;
-    int height;
+    int width = CHIP_8_COLS;
+    int height = CHIP_8_ROWS;
+    float scale;
     bool **display;
 
     void initDisplay();
 
 public:
-    Renderer(int);
+    Renderer(float);
     ~Renderer();
     bool setPixel(int, int);
     void clearDisplay();

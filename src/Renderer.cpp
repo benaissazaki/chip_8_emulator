@@ -14,11 +14,9 @@ void Renderer::initDisplay() {
 
 
 /* Public methods */
-Renderer::Renderer(int scale)
+Renderer::Renderer(float scale)
 {
-    this->width = scale * CHIP_8_COLS;
-    this->height = scale * CHIP_8_ROWS;
-
+    this->scale = scale;
     initDisplay();
     std::cout << "Renderer created with scale " << scale << std::endl;
 }
