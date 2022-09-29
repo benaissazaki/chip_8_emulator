@@ -1,8 +1,10 @@
-#include <stdio.h>
-#include <stdlib.h>
+#include <iostream>
+#include "Renderer.h"
 
 int main() {
-    printf("Hello world");
-
+    Renderer renderer(10);
+    renderer.setPixel(20, 20);
+    renderer.setPixel(40, 15);
+    renderer.render();
     return 0;
 }
