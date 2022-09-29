@@ -36,6 +36,7 @@ int main()
 
         window.clear();
         renderer.render(&window, pixel);
+        keyboard.checkPressedKeys();
         window.display();
     }
 

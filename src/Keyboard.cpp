@@ -26,6 +26,11 @@ void Keyboard::checkPressedKeys()
     for (int i = 0; i < 16; i++)
     {
         this->keyMap[i].isPressed = sf::Keyboard::isKeyPressed(this->keyMap[i].keyboardKey);
+        if (this->keyMap[i].isPressed)
+        {
+            std::cout << "Pressed key 0x" << std::hex << this->keyMap[i].chip8KeyCode << std::endl;
+        }
+        
     }
     
 }
