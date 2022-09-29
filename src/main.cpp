@@ -1,8 +1,8 @@
-#include <stdio.h>
-#include <stdlib.h>
+#include <iostream>
+#include "Renderer.h"
 
 int main() {
-    printf("Hello world");
+    Renderer renderer;
 
     return 0;
 }
