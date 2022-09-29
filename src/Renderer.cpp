@@ -71,43 +71,18 @@ void Renderer::clearDisplay()
     }
 }
 
-void Renderer::render()
+void Renderer::render(sf::RenderWindow *window, sf::RectangleShape pixel)
 {
-    int windowWidth = this->width * this->scale;
-    int windowHeight = this->height * this->scale;
-
-    sf::RenderWindow window(sf::VideoMode(windowWidth, windowHeight), "Chip 8 Emulator");
-    window.setFramerateLimit(60);
-
-    sf::RectangleShape pixel(sf::Vector2f(scale, scale));
-    pixel.setFillColor(sf::Color::White);
-
-    while (window.isOpen())
+    // Loop through display and draw pixels
+    for (int i = 0; i < this->width; i++)
     {
-        sf::Event event;
-        while (window.pollEvent(event))
+        for (int j = 0; j < this->height; j++)
         {
-            if (event.type == sf::Event::Closed)
+            if (display[i][j])
             {
-                window.close();
+                pixel.setPosition(i * this->scale, j * this->scale);
+                window->draw(pixel);
             }
         }
-
-        window.clear();
-
-        // Loop through display and draw pixels
-        for (int i = 0; i < this->width; i++)
-        {
-            for (int j = 0; j < this->height; j++)
-            {
-                if (display[i][j])
-                {
-                    pixel.setPosition(i * this->scale, j * this->scale);
-                    window.draw(pixel);
-                }
-            }
-        }
-
-        window.display();
     }
 }
