@@ -16,4 +16,5 @@ public:
     ~Renderer();
     bool setPixel(int, int);
     void clearDisplay();
+    void render();
 };

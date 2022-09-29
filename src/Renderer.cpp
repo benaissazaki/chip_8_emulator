@@ -1,4 +1,5 @@
 #include <iostream>
+#include <SFML/Graphics.hpp>
 #include "Renderer.h"
 
 /* Private methods */
@@ -65,6 +66,50 @@ void Renderer::clearDisplay() {
             this->display[i][j] = 0;
         }
         
+    }
+    
+}
+
+void Renderer::render() {
+    int windowWidth = this->width * this->scale;
+    int windowHeight = this->height * this->scale;
+
+    sf::RenderWindow window(sf::VideoMode(windowWidth, windowHeight), "Chip 8 Emulator");
+    window.setFramerateLimit(60);
+
+    sf::RectangleShape pixel(sf::Vector2f(scale, scale));
+    pixel.setFillColor(sf::Color::White);
+
+    while (window.isOpen())
+    {
+        sf::Event event;
+        while (window.pollEvent(event))
+        {
+            if (event.type == sf::Event::Closed)
+            {
+                window.close();
+            }
+            
+        }
+        
+        window.clear();
+
+        // Loop through display and draw pixels
+        for (int i = 0; i < this->width; i++)
+        {
+            for (int j = 0; j < this->height; j++)
+            {
+                if (display[i][j])
+                {
+                    pixel.setPosition(i*this->scale,j*this->scale);
+                    window.draw(pixel);
+                }
+                
+            }
+            
+        }
+
+        window.display();    
     }
     
 }
