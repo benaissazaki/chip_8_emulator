@@ -3,7 +3,8 @@
 #include "Keyboard.h"
 
 int main() {
-    Renderer renderer(10);
+    float scale = 10;
+    Renderer renderer(scale);
     Keyboard keyboard;
     renderer.setPixel(20, 20);
     renderer.setPixel(40, 15);

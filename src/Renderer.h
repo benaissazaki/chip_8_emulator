@@ -4,8 +4,8 @@ const int CHIP_8_COLS = 64;
 class Renderer
 {
 private:
-    int width = CHIP_8_COLS;
-    int height = CHIP_8_ROWS;
+    static const unsigned int width = CHIP_8_COLS;
+    static const unsigned int height = CHIP_8_ROWS;
     float scale;
     bool **display;
 
