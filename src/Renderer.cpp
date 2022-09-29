@@ -3,16 +3,15 @@
 #include "Renderer.h"
 
 /* Private methods */
-void Renderer::initDisplay() {
-    this->display = (bool**) malloc(this->width * sizeof(bool*));
+void Renderer::initDisplay()
+{
+    this->display = (bool **)malloc(this->width * sizeof(bool *));
 
     for (int i = 0; i < this->width; i++)
     {
-        this->display[i] = (bool*) malloc(this->height * sizeof(bool));
+        this->display[i] = (bool *)malloc(this->height * sizeof(bool));
     }
-    
 }
-
 
 /* Public methods */
 Renderer::Renderer(float scale)
@@ -29,16 +28,18 @@ Renderer::~Renderer()
         free(this->display[i]);
     }
     free(this->display);
-    
+
     std::cout << "Renderer destroyed\n";
 }
 
-bool Renderer::setPixel(int x, int y) {
+bool Renderer::setPixel(int x, int y)
+{
     // Wrap if outside the bounds of the display
     if (x > this->width)
     {
         x -= this->width;
-    } else if (x < 0)
+    }
+    else if (x < 0)
     {
         x += this->width;
     }
@@ -46,11 +47,12 @@ bool Renderer::setPixel(int x, int y) {
     if (y > this->height)
     {
         y -= this->height;
-    } else if (y < 0)
+    }
+    else if (y < 0)
     {
         y += this->height;
     }
-    
+
     // Toggle the pixel's value
     this->display[x][y] = !this->display[x][y];
 
@@ -58,19 +60,19 @@ bool Renderer::setPixel(int x, int y) {
     return !this->display[x][y];
 }
 
-void Renderer::clearDisplay() {
+void Renderer::clearDisplay()
+{
     for (int i = 0; i < this->width; i++)
     {
         for (int j = 0; j < this->height; j++)
         {
             this->display[i][j] = 0;
         }
-        
     }
-    
 }
 
-void Renderer::render() {
+void Renderer::render()
+{
     int windowWidth = this->width * this->scale;
     int windowHeight = this->height * this->scale;
 
@@ -89,9 +91,8 @@ void Renderer::render() {
             {
                 window.close();
             }
-            
         }
-        
+
         window.clear();
 
         // Loop through display and draw pixels
@@ -101,15 +102,12 @@ void Renderer::render() {
             {
                 if (display[i][j])
                 {
-                    pixel.setPosition(i*this->scale,j*this->scale);
+                    pixel.setPosition(i * this->scale, j * this->scale);
                     window.draw(pixel);
                 }
-                
             }
-            
         }
 
-        window.display();    
+        window.display();
     }
-    
 }
